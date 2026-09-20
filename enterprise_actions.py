@@ -76,9 +76,7 @@ def _timestamp():
     return datetime.now().astimezone().isoformat()
 
 
-# =========================================================
-# HIGH-RISK: SEND EMAIL
-# =========================================================
+#HIGH-RISK: SEND EMAIL
 
 def send_email(
     recipient,
@@ -164,9 +162,7 @@ def send_email(
     }
 
 
-# =========================================================
-# HIGH-RISK: UPDATE CUSTOMER RECORD
-# =========================================================
+#HIGH-RISK: UPDATE CUSTOMER RECORD
 
 def update_customer_record(
     customer_name,
@@ -258,9 +254,7 @@ def update_customer_record(
     }
 
 
-# =========================================================
-# HIGH-RISK: DELETE RECORD
-# =========================================================
+#HIGH-RISK: DELETE RECORD
 
 def delete_record(
     record_type,
@@ -355,9 +349,8 @@ def delete_record(
     }
 
 
-# =========================================================
-# HIGH-RISK: MAINTENANCE DISPATCH
-# =========================================================
+#HIGH-RISK: MAINTENANCE DISPATCH
+
 
 def create_maintenance_dispatch(
     customer,
@@ -432,9 +425,7 @@ def create_maintenance_dispatch(
     }
 
 
-# =========================================================
-# LOW-RISK: STORE DOCUMENT
-# =========================================================
+#LOW-RISK: STORE DOCUMENT
 
 def store_document(
     file_path,
