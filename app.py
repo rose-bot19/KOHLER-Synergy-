@@ -25,9 +25,8 @@ st.set_page_config(
 )
 
 
-# ---------------------------------------------------------
-# SESSION STATE
-# ---------------------------------------------------------
+#SESSION STATE
+
 
 if "orchestrator" not in st.session_state:
     st.session_state.orchestrator = (
@@ -85,9 +84,7 @@ if "last_result" not in st.session_state:
     st.session_state.last_result = None
 
 
-# ---------------------------------------------------------
-# CONVERSATION HELPERS
-# ---------------------------------------------------------
+#CONVERSATION HELPERS
 
 def load_conversation(
     conversation_id,
@@ -137,9 +134,7 @@ def start_new_conversation():
     st.session_state.last_result = None
 
 
-# ---------------------------------------------------------
-# RESULT HELPERS
-# ---------------------------------------------------------
+#RESULT HELPERS
 
 def result_to_text(result):
 
@@ -202,8 +197,6 @@ def extract_pending_action(
         )
     ).lower()
 
-    # IMPORTANT:
-    # Your orchestrator uses confirmation_required.
 
     if status in {
         "confirmation_required",
@@ -299,9 +292,7 @@ def extract_activity(
     return activity
 
 
-# ---------------------------------------------------------
-# DISPLAY HELPERS
-# ---------------------------------------------------------
+#DISPLAY HELPERS
 
 def display_activity(
     result,
@@ -418,9 +409,7 @@ def display_pending_action(
         "Human approval required before this action can execute."
     )
 
-    # -----------------------------------------------------
-    # EMAIL DRAFT
-    # -----------------------------------------------------
+    #EMAIL DRAFT
 
     if isinstance(
         pending_action,
@@ -491,9 +480,7 @@ def display_pending_action(
 
             return
 
-        # -------------------------------------------------
-        # OTHER HIGH-RISK ACTIONS
-        # -------------------------------------------------
+        #OTHER HIGH-RISK ACTIONS
 
         st.markdown(
             "### Pending Action"
@@ -510,9 +497,7 @@ def display_pending_action(
         )
 
 
-# ---------------------------------------------------------
-# SIDEBAR
-# ---------------------------------------------------------
+#SIDEBAR
 
 with st.sidebar:
 
@@ -714,9 +699,7 @@ with st.sidebar:
     )
 
 
-# ---------------------------------------------------------
-# MAIN HEADER
-# ---------------------------------------------------------
+#MAIN HEADER
 
 st.title(
     "◆ KOHLER Synergy"
@@ -735,9 +718,7 @@ step to suggest.
 st.divider()
 
 
-# ---------------------------------------------------------
-# APPROVAL PANEL
-# ---------------------------------------------------------
+#APPROVAL PANEL
 
 if st.session_state.pending_action:
 
@@ -833,9 +814,7 @@ if st.session_state.pending_action:
             st.rerun()
 
 
-# ---------------------------------------------------------
-# CHAT HISTORY
-# ---------------------------------------------------------
+#CHAT HISTORY
 
 for message in st.session_state.messages:
 
@@ -870,9 +849,7 @@ for message in st.session_state.messages:
                 )
 
 
-# ---------------------------------------------------------
-# CHAT INPUT
-# ---------------------------------------------------------
+#CHAT INPUT
 
 user_message = st.chat_input(
     "Ask KOHLER Synergy anything..."
@@ -881,9 +858,7 @@ user_message = st.chat_input(
 
 if user_message:
 
-    # -----------------------------------------------------
-    # SAVE USER MESSAGE
-    # -----------------------------------------------------
+    #SAVE USER MESSAGE
 
     st.session_state.messages.append(
         {
@@ -906,9 +881,7 @@ if user_message:
             user_message
         )
 
-    # -----------------------------------------------------
-    # RUN SYNERGY
-    # -----------------------------------------------------
+    #RUN SYNERGY
 
     with st.chat_message(
         "assistant"
@@ -957,9 +930,7 @@ if user_message:
             result
         )
 
-    # -----------------------------------------------------
-    # SAVE ASSISTANT RESPONSE
-    # -----------------------------------------------------
+    #SAVE ASSISTANT RESPONSE
 
     st.session_state.messages.append(
         {
@@ -976,9 +947,7 @@ if user_message:
         result,
     )
 
-    # -----------------------------------------------------
-    # DETECT APPROVAL
-    # -----------------------------------------------------
+    #DETECT APPROVAL
 
     pending_action = (
         extract_pending_action(
