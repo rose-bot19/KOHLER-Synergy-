@@ -20,9 +20,7 @@ from enterprise_actions import (
 support_connector = SupportConnector()
 
 
-# ---------------------------------------------------------
-# KNOWLEDGE BASE
-# ---------------------------------------------------------
+#KNOWLEDGE BASE
 
 def search_knowledge_base(query: str) -> str:
     """Search the Kohler knowledge base for relevant information."""
@@ -58,9 +56,7 @@ def search_knowledge_base(query: str) -> str:
     return "No relevant information was found."
 
 
-# ---------------------------------------------------------
-# WARRANTY TOOL
-# ---------------------------------------------------------
+#WARRANTY TOOL
 
 def check_warranty(product: str) -> str:
     """Check the warranty status of a Kohler product."""
@@ -80,9 +76,7 @@ def check_warranty(product: str) -> str:
     return "Warranty information not found."
 
 
-# ---------------------------------------------------------
-# SUPPORT TICKET TOOL
-# ---------------------------------------------------------
+#SUPPORT TICKET TOOL
 
 def create_support_ticket(
     customer: str,
