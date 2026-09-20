@@ -31,7 +31,6 @@ def _collect_evidence(
     the worker's assignment.
     """
 
-    # Imported here deliberately to avoid an import cycle.
     from tools import (
         search_knowledge_base,
         check_warranty,
@@ -137,9 +136,7 @@ def run_complex_task(
     client = genai.Client()
 
 
-    # -------------------------------------------------
-    # MANAGER
-    # -------------------------------------------------
+    #MANAGER
 
     plan = plan_complex_task(
         client,
@@ -153,9 +150,7 @@ def run_complex_task(
     )[:3]
 
 
-    # -------------------------------------------------
-    # COLLECT RELEVANT EVIDENCE
-    # -------------------------------------------------
+    #COLLECT RELEVANT EVIDENCE
 
     prepared_tasks = []
 
@@ -183,9 +178,7 @@ def run_complex_task(
         })
 
 
-    # -------------------------------------------------
-    # PARALLEL WORKERS
-    # -------------------------------------------------
+    #PARALLEL WORKERS
 
     worker_results = run_workers(
         client,
@@ -193,9 +186,7 @@ def run_complex_task(
     )
 
 
-    # -------------------------------------------------
-    # SYNTHESIS
-    # -------------------------------------------------
+    #SYNTHESIS
 
     synthesis_prompt = _load_prompt(
         "prompts/synthesizer.txt"
