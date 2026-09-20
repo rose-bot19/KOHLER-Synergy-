@@ -32,9 +32,7 @@ class OpenRouterFallback:
 
         self.messages = []
 
-    # -----------------------------------------------------
-    # START A NEW FALLBACK CONVERSATION
-    # -----------------------------------------------------
+    #START A NEW FALLBACK CONVERSATION
 
     def start(
         self,
@@ -55,9 +53,8 @@ class OpenRouterFallback:
             },
         ]
 
-    # -----------------------------------------------------
-    # SEED FALLBACK FROM A GEMINI TOOL CALL
-    # -----------------------------------------------------
+    #SEED FALLBACK FROM A GEMINI TOOL CALL
+    
 
     def seed_from_gemini(
         self,
@@ -80,7 +77,6 @@ class OpenRouterFallback:
             },
         ]
 
-        # Reconstruct the assistant's tool request.
 
         if function_calls:
 
@@ -121,9 +117,7 @@ class OpenRouterFallback:
             function_results
         )
 
-    # -----------------------------------------------------
-    # SEND TOOL RESULTS
-    # -----------------------------------------------------
+    #SEND TOOL RESULTS
 
     def add_tool_results(
         self,
@@ -194,8 +188,7 @@ class OpenRouterFallback:
 
         message = response.choices[0].message
 
-        # Save assistant response into the
-        # OpenRouter conversation.
+     
 
         assistant_message = {
             "role": "assistant",
@@ -234,9 +227,7 @@ class OpenRouterFallback:
             assistant_message
         )
 
-        # Convert OpenRouter's response into
-        # the same simple shape your existing
-        # _process_interaction() expects.
+   
 
         steps = []
 
