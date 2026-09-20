@@ -33,9 +33,6 @@ class SynergyOrchestrator:
 
     def __init__(self):
 
-        # -------------------------------------------------
-        # PRIMARY PROVIDER
-        # -------------------------------------------------
 
         self.client = create_client()
 
@@ -47,23 +44,16 @@ class SynergyOrchestrator:
 
         self.previous_interaction_id = None
 
-        # -------------------------------------------------
-        # OPENROUTER FALLBACK
-        # -------------------------------------------------
 
         self.openrouter_client = None
 
         self.openrouter_messages = []
 
-        # -------------------------------------------------
-        # PROVIDER-INDEPENDENT HISTORY
-        # -------------------------------------------------
+        #PROVIDER-INDEPENDENT HISTORY
 
         self.conversation_history = []
 
-        # -------------------------------------------------
-        # AGENT STATE
-        # -------------------------------------------------
+        #AGENT STATE
 
         self.pending_action = None
 
@@ -73,9 +63,7 @@ class SynergyOrchestrator:
 
         self.current_user_message = ""
 
-    # =====================================================
-    # RESTORE CONVERSATION HISTORY
-    # =====================================================
+    #RESTORE CONVERSATION HISTORY
 
     def set_history(
         self,
@@ -120,9 +108,7 @@ class SynergyOrchestrator:
 
             self._initialize_openrouter_history()
 
-    # =====================================================
-    # CREATE OPENROUTER CLIENT
-    # =====================================================
+    #CREATE OPENROUTER CLIENT
 
     def _create_openrouter_client(self):
 
@@ -149,17 +135,13 @@ class SynergyOrchestrator:
 
         return self.openrouter_client
 
-    # =====================================================
-    # CONVERT TOOL DECLARATIONS
-    # =====================================================
+    #CONVERT TOOL DECLARATIONS
 
     def _get_openrouter_tools(self):
 
         converted = []
 
         for declaration in TOOL_DECLARATIONS:
-
-            # Already OpenAI-compatible.
 
             if "function" in declaration:
 
@@ -168,8 +150,6 @@ class SynergyOrchestrator:
                 )
 
                 continue
-
-            # Gemini-style fallback.
 
             converted.append(
                 {
@@ -195,9 +175,7 @@ class SynergyOrchestrator:
 
         return converted
 
-    # =====================================================
-    # INITIALIZE OPENROUTER HISTORY
-    # =====================================================
+    #INITIALIZE OPENROUTER HISTORY
 
     def _initialize_openrouter_history(self):
 
@@ -234,9 +212,7 @@ class SynergyOrchestrator:
                 }
             )
 
-    # =====================================================
-    # ACTIVATE FALLBACK
-    # =====================================================
+    #ACTIVATE FALLBACK
 
     def _activate_openrouter_fallback(
         self,
@@ -261,9 +237,7 @@ class SynergyOrchestrator:
             "OPENROUTER_FALLBACK_ACTIVE"
         )
 
-    # =====================================================
-    # GEMINI INTERACTION
-    # =====================================================
+    #GEMINI INTERACTION
 
     def _create_gemini_interaction(
         self,
@@ -291,9 +265,7 @@ class SynergyOrchestrator:
             tools=TOOL_DECLARATIONS,
         )
 
-    # =====================================================
-    # OPENROUTER INTERACTION
-    # =====================================================
+    #OPENROUTER INTERACTION
 
     def _create_openrouter_interaction(
         self,
@@ -308,9 +280,7 @@ class SynergyOrchestrator:
 
             self._initialize_openrouter_history()
 
-        # -------------------------------------------------
-        # Add tool results
-        # -------------------------------------------------
+        #Add tool results
 
         if isinstance(
             input_data,
@@ -389,11 +359,6 @@ class SynergyOrchestrator:
             response.choices[0].message
         )
 
-        # -------------------------------------------------
-        # Convert response into the same simple structure
-        # expected by _process_interaction()
-        # -------------------------------------------------
-
         steps = []
 
         openrouter_tool_calls = []
@@ -449,9 +414,7 @@ class SynergyOrchestrator:
                     }
                 )
 
-        # -------------------------------------------------
-        # Store assistant response
-        # -------------------------------------------------
+        #Store assistant response
 
         assistant_message = {
 
@@ -488,9 +451,7 @@ class SynergyOrchestrator:
             ),
         )
 
-    # =====================================================
-    # UNIFIED INTERACTION CREATOR
-    # =====================================================
+    #UNIFIED INTERACTION CREATOR
 
     def _create_interaction(
         self,
@@ -504,19 +465,11 @@ class SynergyOrchestrator:
         Synergy automatically switches to OpenRouter.
         """
 
-        # -------------------------------------------------
-        # OpenRouter already active
-        # -------------------------------------------------
-
         if self.provider == "openrouter":
 
             return self._create_openrouter_interaction(
                 input_data
             )
-
-        # -------------------------------------------------
-        # Try Gemini
-        # -------------------------------------------------
 
         try:
 
@@ -573,9 +526,7 @@ class SynergyOrchestrator:
                 input_data
             )
 
-    # =====================================================
-    # SEND MESSAGE
-    # =====================================================
+    #SEND MESSAGe
 
     def send_message(
         self,
@@ -590,9 +541,7 @@ class SynergyOrchestrator:
 
         self.pending_action = None
 
-        # -------------------------------------------------
-        # Store provider-independent history
-        # -------------------------------------------------
+        #Store provider-independent history
 
         self.conversation_history.append(
             {
@@ -600,11 +549,6 @@ class SynergyOrchestrator:
                 "content": user_message,
             }
         )
-
-        # -------------------------------------------------
-        # If already using OpenRouter, add the message
-        # there as well.
-        # -------------------------------------------------
 
         if self.provider == "openrouter":
 
@@ -626,9 +570,7 @@ class SynergyOrchestrator:
             message=user_message,
         )
 
-        # -------------------------------------------------
-        # Start model interaction
-        # -------------------------------------------------
+        #Start model interaction
 
         interaction = self._create_interaction(
 
@@ -660,9 +602,7 @@ class SynergyOrchestrator:
             evidence=[],
         )
 
-    # =====================================================
-    # PROCESS INTERACTION
-    # =====================================================
+    #PROCESS INTERACTION
 
     def _process_interaction(
         self,
@@ -690,9 +630,6 @@ class SynergyOrchestrator:
                 function_calls
             )
 
-            # =================================================
-            # NO TOOL CALL
-            # =================================================
 
             if not function_calls:
 
@@ -702,11 +639,6 @@ class SynergyOrchestrator:
                 )
 
                 self.last_evidence = evidence
-
-                # -------------------------------------------------
-                # AI verification only through the current Gemini
-                # verifier implementation.
-                # -------------------------------------------------
 
                 if (
 
@@ -804,10 +736,8 @@ class SynergyOrchestrator:
                         "is active"
                     )
 
-                # -------------------------------------------------
-                # Save final response
-                # -------------------------------------------------
-
+                #Save final response
+                
                 self.conversation_history.append(
                     {
                         "role": "assistant",
@@ -840,9 +770,7 @@ class SynergyOrchestrator:
 
                 }
 
-            # =================================================
-            # PROCESS TOOL CALLS
-            # =================================================
+            #PROCESS TOOL CALLS
 
             function_results = []
 
@@ -867,17 +795,13 @@ class SynergyOrchestrator:
                     provider=self.provider,
                 )
 
-                # -------------------------------------------------
-                # POLICY
-                # -------------------------------------------------
+                #POLICY
 
                 policy = assess_action(
                     action_name=tool_name
                 )
 
-                # =================================================
-                # HIGH-RISK ACTION
-                # =================================================
+                #HIGH-RISK ACTION
 
                 if (
                     policy["status"]
@@ -950,9 +874,7 @@ class SynergyOrchestrator:
                             self.provider,
                     }
 
-                # =================================================
-                # BLOCKED ACTION
-                # =================================================
+                #BLOCKED ACTION
 
                 if (
                     policy["status"]
@@ -985,9 +907,7 @@ class SynergyOrchestrator:
                             self.provider,
                     }
 
-                # =================================================
-                # FIND PYTHON FUNCTION
-                # =================================================
+                #FIND PYTHON FUNCTION
 
                 function = (
                     TOOL_FUNCTIONS.get(
@@ -1025,9 +945,7 @@ class SynergyOrchestrator:
                             self.provider,
                     }
 
-                # =================================================
-                # EXECUTE TOOL
-                # =================================================
+                #EXECUTE TOOL
 
                 try:
 
@@ -1122,9 +1040,7 @@ class SynergyOrchestrator:
                             self.provider,
                     }
 
-            # =================================================
-            # SEND TOOL RESULTS BACK TO MODEL
-            # =================================================
+            #SEND TOOL RESULTS BACK TO MODEL
 
             interaction = (
                 self._create_interaction(
@@ -1169,9 +1085,7 @@ class SynergyOrchestrator:
                 self.provider,
         }
 
-    # =====================================================
-    # APPROVE PENDING ACTION
-    # =====================================================
+    #APPROVE PENDING ACTION
 
     def approve_pending_action(self):
 
@@ -1334,9 +1248,7 @@ class SynergyOrchestrator:
                 ],
             }
 
-            # -------------------------------------------------
-            # Continue Gemini conversation
-            # -------------------------------------------------
+            #Continue Gemini conversation
 
             if provider == "gemini":
 
@@ -1357,9 +1269,6 @@ class SynergyOrchestrator:
                     )
 
                 except Exception as error:
-
-                    # If Gemini quota fails here,
-                    # switch to OpenRouter.
 
                     self._activate_openrouter_fallback(
                         reason=error
@@ -1390,9 +1299,7 @@ class SynergyOrchestrator:
                     evidence=evidence,
                 )
 
-            # -------------------------------------------------
-            # Continue OpenRouter conversation
-            # -------------------------------------------------
+            #Continue OpenRouter conversation
 
             interaction = (
                 self._create_openrouter_interaction(
@@ -1447,9 +1354,7 @@ class SynergyOrchestrator:
                     trace,
             }
 
-    # =====================================================
-    # CANCEL PENDING ACTION
-    # =====================================================
+    #CANCEL PENDING ACTION
 
     def cancel_pending_action(self):
 
