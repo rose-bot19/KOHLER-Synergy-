@@ -29,9 +29,7 @@ CATEGORIES = [
 ]
 
 
-# =========================================================
-# REGISTRY
-# =========================================================
+#REGISTRY
 
 def _load_registry():
 
@@ -71,9 +69,7 @@ def _save_registry(
         )
 
 
-# =========================================================
-# DOCUMENT TEXT
-# =========================================================
+#DOCUMENT TEXT
 
 def extract_document_text(
     file_path
@@ -125,9 +121,7 @@ def extract_document_text(
     )
 
 
-# =========================================================
-# AI DOCUMENT CLASSIFICATION
-# =========================================================
+#AI DOCUMENT CLASSIFICATION
 
 def classify_document(
     file_path
@@ -150,7 +144,6 @@ def classify_document(
     )
 
 
-    # Keep the classification request reasonably small.
     text_sample = text[:15000]
 
 
@@ -253,9 +246,7 @@ DOCUMENT:
     return result
 
 
-# =========================================================
-# STORE DOCUMENT
-# =========================================================
+#STORE DOCUMENT
 
 def ingest_document(
     file_path,
@@ -338,9 +329,7 @@ def ingest_document(
         )
 
 
-    # -----------------------------------------------------
-    # MOVE DOCUMENT
-    # -----------------------------------------------------
+    #MOVE DOCUMENT
 
     if os.path.abspath(
         file_path
@@ -373,9 +362,7 @@ def ingest_document(
     }
 
 
-    # -----------------------------------------------------
-    # INDEX NEW DOCUMENT
-    # -----------------------------------------------------
+    #INDEX NEW DOCUMENT
 
     index_document(
         destination,
@@ -383,9 +370,7 @@ def ingest_document(
     )
 
 
-    # -----------------------------------------------------
-    # SAVE REGISTRY
-    # -----------------------------------------------------
+    #SAVE REGISTRY
 
     updated_registry.append({
 
