@@ -140,6 +140,6 @@ Recommended demo sequence:
 8. Start a new chat to demonstrate conversation isolation.
 9. Show a high-risk action stopping at the approval stage.
 
-## Submission note
+## note
 
 Prompt files in `/prompts` contain the modular system instructions and workflow prompts used by Synergy. The submission prompt PDF is generated from those files so the documented prompt contents stay aligned with the repository.
