@@ -1,0 +1,17 @@
+KOHLER WATER CONSERVATION INITIATIVE
+
+Project Status: Active
+
+The Water Conservation Initiative focuses on reducing unnecessary
+water consumption across connected bathroom products and commercial
+facilities.
+
+Current work includes:
+- leak detection
+- usage monitoring
+- water-efficiency reporting
+- predictive maintenance
+
+The initiative is currently in prototype and internal validation.
+
+Target pilot period: 2027.

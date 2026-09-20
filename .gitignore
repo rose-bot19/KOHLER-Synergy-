@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.streamlit/
+.DS_Store
+# Runtime/demo state - do not commit personal session history
+/data/conversations.json
+/data/audit.jsonl
+/data/outbox.json
+/data/customers.json
+/data/maintenance_dispatches.json

@@ -1,0 +1,17 @@
+KOHLER SMART FACILITY MONITORING GUIDELINES
+
+Connected commercial facilities may monitor:
+- water flow
+- flush counts
+- occupancy
+- continuous leaks
+- sensor diagnostic status
+
+A continuous leak should trigger investigation because prolonged water
+loss can result in unnecessary consumption and potential property damage.
+
+High-traffic facilities may require increased cleaning and maintenance
+frequency based on usage data.
+
+Maintenance dispatches should include location, detected condition,
+severity and relevant sensor information.

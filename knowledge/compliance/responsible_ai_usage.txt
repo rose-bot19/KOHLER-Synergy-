@@ -1,0 +1,16 @@
+KOHLER RESPONSIBLE AI USAGE GUIDELINES
+
+AI systems used for company work should operate within approved
+business purposes.
+
+Employees should not enter confidential or sensitive company
+information into an unapproved AI service.
+
+AI-generated content should be reviewed when it is used for important
+business, legal, financial or customer-facing decisions.
+
+Automated actions affecting external parties should use appropriate
+approval and monitoring controls.
+
+AI systems should provide evidence or source information when making
+company-specific factual claims where practical.

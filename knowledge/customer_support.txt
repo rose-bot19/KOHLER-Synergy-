@@ -1,0 +1,22 @@
+KOHLER CUSTOMER SUPPORT GUIDELINES
+
+Customers reporting a malfunctioning smart toilet should first be asked to describe the issue.
+
+Common issues include:
+- Leaking
+- Sensor failure
+- Flush malfunction
+- Temperature control issues
+- Electrical or display problems
+
+For a reported leak:
+1. Advise the customer to stop using the product if continued use could cause water damage.
+2. Ask the customer to check whether the water supply connection is secure.
+3. Create a support ticket if the problem cannot be resolved through basic troubleshooting.
+4. If warranty status is uncertain, request the product model number and serial number.
+
+Support tickets should include:
+- Customer name
+- Product
+- Issue description
+- Relevant troubleshooting information
