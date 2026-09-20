@@ -102,9 +102,7 @@ def index_document(
     )[1].lower()
 
 
-    # -----------------------------------------------------
-    # READ TEXT / MARKDOWN
-    # -----------------------------------------------------
+    #READ TEXT / MARKDOWN
 
     if extension in {".txt", ".md"}:
 
@@ -117,9 +115,7 @@ def index_document(
             text = file.read()
 
 
-    # -----------------------------------------------------
-    # READ PDF
-    # -----------------------------------------------------
+    #READ PDF
 
     elif extension == ".pdf":
 
@@ -153,7 +149,6 @@ def index_document(
     chunks = chunk_text(text)
 
 
-    # Remove previous indexing of this exact source.
     collection.delete(
         where={
             "source": file_path
